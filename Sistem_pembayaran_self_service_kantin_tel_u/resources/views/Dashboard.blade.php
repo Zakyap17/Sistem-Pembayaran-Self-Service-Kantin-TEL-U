@@ -125,7 +125,7 @@
             <div class="card">
                 <h3>Kelola Transaksi</h3>
                 <p>Kelola dan atur transaksi yang ada.</p>
-                <a href="#">Kelola Transaksi</a>
+                <a href="{{ route('kelola.transaksi') }}">Kelola Transaksi</a>
             </div>
         </div>
     </div>

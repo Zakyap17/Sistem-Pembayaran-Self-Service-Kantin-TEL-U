@@ -25,4 +25,8 @@ Route::get('riwayat-transaksi', [DashboardController::class, 'riwayatTransaksi']
 
 // Rute untuk halaman Kelola Transaksi
 Route::get('kelola-transaksi', [DashboardController::class, 'kelolaTransaksi'])->name('kelola.transaksi');
-
+Route::get('transaksi/tambah', [TransaksiController::class, 'create'])->name('transaksi.create');
+Route::post('transaksi/tambah', [TransaksiController::class, 'store']);
+Route::get('transaksi/edit/{id}', [TransaksiController::class, 'edit'])->name('transaksi.edit');
+Route::post('transaksi/edit/{id}', [TransaksiController::class, 'update']);
+Route::post('transaksi/hapus/{id}', [TransaksiController::class, 'destroy'])->name('transaksi.hapus');
