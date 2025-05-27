@@ -10,10 +10,10 @@ class AuthController extends Controller
     // Menampilkan halaman login
     public function showLoginForm()
     {
-        return view('auth.login');
+        return view('auth.login');  // Pastikan Anda memiliki view untuk login (auth/login.blade.php)
     }
 
-    // Memproses login
+    // Proses login
     public function login(Request $request)
     {
         // Validasi input
@@ -22,13 +22,13 @@ class AuthController extends Controller
             'password' => 'required|min:6',
         ]);
 
-        // Mencoba login dengan kredensial yang diberikan
+        // Proses login
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            // Jika login berhasil, redirect ke halaman home
-            return redirect()->intended('home');
+            // Jika login berhasil, redirect ke halaman home (dashboard)
+            return redirect()->intended('/');
         }
 
-        // Jika login gagal, kembalikan ke halaman login dengan error
+        // Jika login gagal, kembali ke halaman login dengan pesan error
         return back()->withErrors([
             'email' => 'Email atau password yang Anda masukkan salah.',
         ]);

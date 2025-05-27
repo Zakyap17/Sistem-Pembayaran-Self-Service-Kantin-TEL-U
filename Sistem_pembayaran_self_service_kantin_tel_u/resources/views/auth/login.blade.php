@@ -56,7 +56,7 @@
         input[type="submit"] {
             width: 100%;
             padding: 12px;
-            background-color: #4CAF50;
+            background-color: #1698cc;
             color: white;
             border: none;
             border-radius: 8px;
@@ -81,7 +81,7 @@
         }
 
         .forgot-password a {
-            color: #4CAF50;
+            color: #020103;
             text-decoration: none;
         }
 
