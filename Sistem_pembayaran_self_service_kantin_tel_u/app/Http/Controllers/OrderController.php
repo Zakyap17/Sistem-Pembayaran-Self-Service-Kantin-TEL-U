@@ -49,17 +49,28 @@ class OrderController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
-    }
+    public function edit(Order $order)
+    {        
+        if ($order->user_id !== Auth::id() || $order->status !== 'pending') {
+            return redirect()->route('orders.index')->with('error', 'Tidak bisa mengedit pesanan ini.');
+        }
+
+        return view('orders.edit', compact('order'));
+        }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Order $order)
     {
-        //
+        if ($order->user_id !== Auth::id() || $order->status !== 'pending') {
+            return redirect()->route('orders.index')->with('error', 'Tidak bisa mengubah pesanan ini.');
+        }
+
+        $order->total_amount = $request->input('total_amount', 0);
+        $order->save();
+
+        return redirect()->route('orders.index')->with('success', 'Pesanan berhasil diperbarui.');
     }
 
     /**
@@ -67,6 +78,10 @@ class OrderController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        if ($order->user_id !== Auth::id() || $order->status !== 'pending') {
+            return redirect()->route('orders.index')->with('error', 'Tidak bisa membatalkan pesanan ini.');
+        }
+        $order->delete();
+        return redirect()->route('orders.index')->with('success', 'Pesanan berhasil dibatalkan.');
     }
 }
