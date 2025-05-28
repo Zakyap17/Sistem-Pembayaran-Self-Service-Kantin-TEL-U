@@ -3,6 +3,14 @@
 @section('content')
     <div class="container">
         <h2>Riwayat Pesanan</h2>
+
+        {{-- Notifikasi sukses --}}
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
         <a href="{{ route('orders.create') }}" class="btn btn-primary mb-3">+ Buat Pesanan Baru</a>
         
         <table class="table">

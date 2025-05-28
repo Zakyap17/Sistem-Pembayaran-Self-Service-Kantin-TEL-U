@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Order;
 
 class OrderController extends Controller
 {
@@ -28,7 +29,13 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $order = new Order();
+        $order->user_id = Auth::id();
+        $order->status = 'pending';
+        $order->total_amount = 0;
+        $order->save();
+
+        return redirect()->route('orders.index')->with('success', 'Pesanan berhasil dibuat.');
     }
 
     /**
