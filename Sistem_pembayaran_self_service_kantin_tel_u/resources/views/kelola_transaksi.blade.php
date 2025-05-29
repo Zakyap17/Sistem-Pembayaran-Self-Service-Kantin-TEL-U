@@ -62,7 +62,7 @@
         }
 
         .action-buttons a:hover {
-            background-color: #444744;
+            background-color: #333333;
         }
 
         .footer {
@@ -110,6 +110,25 @@
                     <th>Aksi</th>
                 </tr>
             </thead>
+            <tbody>
+                @foreach($transaksis as $transaksi)
+                    <tr>
+                        <td>{{ $transaksi->id }}</td>
+                        <td>{{ $transaksi->pelanggan }}</td>
+                        <td>{{ $transaksi->created_at->format('d-m-Y') }}</td>
+                        <td>{{ $transaksi->total }}</td>
+                        <td>{{ $transaksi->status }}</td>
+                        <td class="action-buttons">
+                            <a href="{{ route('transaksi.edit', $transaksi->id) }}">Edit</a>
+                            <form action="{{ route('transaksi.destroy', $transaksi->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" style="background-color: #e74c3c; border: none; padding: 8px 15px; color: white; border-radius: 5px;">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
         </table>
     </div>
 

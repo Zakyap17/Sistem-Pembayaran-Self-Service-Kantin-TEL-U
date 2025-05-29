@@ -10,8 +10,11 @@ class TransaksiController extends Controller
     // Menampilkan Daftar Transaksi (Read)
     public function index()
     {
-        $transaksis = Transaksi::all();  // Ambil semua data transaksi
-        return view('kelola_transaksi', compact('transaksis')); // Kirim data transaksi ke view
+        // Mengambil semua data transaksi
+        $transaksis = Transaksi::all();  
+        
+        // Mengirimkan data transaksi ke view
+        return view('kelola_transaksi', compact('transaksis'));
     }
 
     // Menampilkan Form Tambah Transaksi (Create)
@@ -37,14 +40,18 @@ class TransaksiController extends Controller
             'status' => $request->status,
         ]);
 
-        return redirect()->route('kelola.transaksi');  // Redirect ke halaman kelola transaksi setelah berhasil
+        // Redirect ke halaman kelola transaksi setelah berhasil
+        return redirect()->route('kelola.transaksi');
     }
 
     // Menampilkan Form Edit Transaksi (Update)
     public function edit($id)
     {
-        $transaksi = Transaksi::findOrFail($id); // Cari transaksi berdasarkan ID
-        return view('edit_transaksi', compact('transaksi'));  // Kirim data transaksi ke view edit
+        // Cari transaksi berdasarkan ID
+        $transaksi = Transaksi::findOrFail($id);
+        
+        // Kirim data transaksi ke view edit
+        return view('edit_transaksi', compact('transaksi'));
     }
 
     // Mengupdate Transaksi (Update)
@@ -65,15 +72,20 @@ class TransaksiController extends Controller
             'status' => $request->status,
         ]);
 
-        return redirect()->route('kelola.transaksi');  // Redirect ke halaman kelola transaksi setelah berhasil
+        // Redirect ke halaman kelola transaksi setelah berhasil
+        return redirect()->route('kelola.transaksi');
     }
 
     // Menghapus Transaksi (Delete)
     public function destroy($id)
     {
+        // Cari transaksi berdasarkan ID
         $transaksi = Transaksi::findOrFail($id);
-        $transaksi->delete();  // Hapus transaksi
+        
+        // Hapus transaksi
+        $transaksi->delete();
 
-        return redirect()->route('kelola.transaksi');  // Redirect ke halaman kelola transaksi setelah berhasil
+        // Redirect ke halaman kelola transaksi setelah berhasil
+        return redirect()->route('kelola.transaksi');
     }
 }

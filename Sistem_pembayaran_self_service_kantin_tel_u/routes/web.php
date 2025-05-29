@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\TransaksiController;
 
 // Rute untuk Halaman Home (Dashboard)
 Route::get('/', [DashboardController::class, 'showDashboard'])->name('dashboard')->middleware('auth');  // Dashboard hanya bisa diakses setelah login
@@ -24,9 +25,9 @@ Route::get('pesan-makanan', [DashboardController::class, 'pesanMakanan'])->name(
 Route::get('riwayat-transaksi', [DashboardController::class, 'riwayatTransaksi'])->name('riwayat.transaksi');
 
 // Rute untuk halaman Kelola Transaksi
-Route::get('kelola-transaksi', [DashboardController::class, 'kelolaTransaksi'])->name('kelola.transaksi');
-Route::get('transaksi/tambah', [TransaksiController::class, 'create'])->name('transaksi.create');
-Route::post('transaksi/tambah', [TransaksiController::class, 'store']);
-Route::get('transaksi/edit/{id}', [TransaksiController::class, 'edit'])->name('transaksi.edit');
-Route::post('transaksi/edit/{id}', [TransaksiController::class, 'update']);
-Route::post('transaksi/hapus/{id}', [TransaksiController::class, 'destroy'])->name('transaksi.hapus');
+Route::get('/kelola-transaksi', [TransaksiController::class, 'index'])->name('kelola.transaksi');
+Route::get('/transaksi/create', [TransaksiController::class, 'create'])->name('transaksi.create');
+Route::post('/transaksi', [TransaksiController::class, 'store'])->name('transaksi.store');
+Route::get('/transaksi/{id}/edit', [TransaksiController::class, 'edit'])->name('transaksi.edit');
+Route::put('/transaksi/{id}', [TransaksiController::class, 'update'])->name('transaksi.update');
+Route::delete('/transaksi/{id}', [TransaksiController::class, 'destroy'])->name('transaksi.destroy');
