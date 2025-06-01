@@ -1,5 +1,4 @@
-{{-- @extends('layouts.admin_app') --}}
-{{-- @section('content') --}}
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -39,8 +38,6 @@
             <div class="mb-3">
                 <label class="form-label">Menu Makanan</label>
                 <input type="text" class="form-control" value="{{ $favoriteMenu->menu->name ?? 'Menu tidak ditemukan' }}" readonly>
-                {{-- Jika Anda ingin memperbolehkan mengubah menu, ganti dengan dropdown seperti di create form --}}
-                {{-- Namun, biasanya item favorit tidak diubah menunya, melainkan dihapus dan dibuat baru jika salah --}}
             </div>
 
             <div class="mb-3">
@@ -83,4 +80,3 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-{{-- @endsection --}}

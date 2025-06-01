@@ -90,40 +90,32 @@
 </head>
 <body>
 
-    <!-- Header -->
     <div class="header">
         <h1>Edit Transaksi</h1>
     </div>
 
-    <!-- Main Content -->
     <div class="container">
         <div class="form-container">
             <h2>Form Edit Transaksi</h2>
 
-            <!-- Form untuk mengedit transaksi -->
             <form action="{{ route('transaksi.update', $transaksi->id) }}" method="POST">
                 @csrf
-                @method('PUT') <!-- Digunakan untuk memproses form sebagai metode PUT -->
+                @method('PUT') 
 
-                <!-- Input untuk Nama Pelanggan -->
                 <label for="pelanggan">Nama Pelanggan:</label>
                 <input type="text" name="pelanggan" id="pelanggan" value="{{ $transaksi->pelanggan }}" required>
 
-                <!-- Input untuk Total -->
                 <label for="total">Total:</label>
                 <input type="number" name="total" id="total" value="{{ $transaksi->total }}" required>
 
-                <!-- Input untuk Status -->
                 <label for="status">Status:</label>
                 <input type="text" name="status" id="status" value="{{ $transaksi->status }}" required>
 
-                <!-- Tombol untuk menyimpan perubahan -->
                 <button type="submit">Update</button>
             </form>
         </div>
     </div>
 
-    <!-- Footer -->
     <div class="footer">
         <p>&copy; 2025 Sistem Pembayaran Kantin Tel U</p>
     </div>

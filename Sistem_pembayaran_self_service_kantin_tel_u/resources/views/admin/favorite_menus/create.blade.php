@@ -38,9 +38,8 @@
                 <select name="menu_id" id="menu_id" class="form-select @error('menu_id') is-invalid @enderror" required>
                     <option value="">-- Pilih Menu --</option>
                     @foreach ($menus as $menu)
-                        {{-- Anda mungkin ingin menampilkan statistik pembelian di sini --}}
                         <option value="{{ $menu->id }}" {{ old('menu_id') == $menu->id ? 'selected' : '' }}>
-                            {{ $menu->name }} {{-- (Dibeli: {{ $menu->purchase_count ?? 0 }} kali) --}}
+                            {{ $menu->name }} 
                         </option>
                     @endforeach
                 </select>
@@ -83,4 +82,3 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-{{-- @endsection --}}

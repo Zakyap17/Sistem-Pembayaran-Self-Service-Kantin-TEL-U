@@ -6,7 +6,6 @@
     <title>Login</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* Global Styles */
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #f4f7fc;
@@ -97,22 +96,18 @@
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
-            <!-- Email Input -->
             <div class="input-group">
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email" required>
             </div>
 
-            <!-- Password Input -->
             <div class="input-group">
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password" required>
             </div>
 
-            <!-- Submit Button -->
             <input type="submit" value="Login">
 
-            <!-- Display Errors -->
             @if ($errors->any())
                 <div class="error-message">
                     @foreach ($errors->all() as $error)

@@ -1,8 +1,20 @@
-@extends('layouts.app')
-
-@section('content')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buat Pesanan Baru</title>
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+</head>
+<body>
     <div class="container">
         <h2>Buat Pesanan Baru</h2>
+
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
 
         <form method="POST" action="{{ route('orders.store') }}">
             @csrf
@@ -21,4 +33,7 @@
             <button type="submit" class="btn btn-success mt-3">Buat Pesanan</button>
         </form>
     </div>
-@endsection
+
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>

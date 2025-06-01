@@ -1,45 +1,33 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Menu;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Order;
 
 class OrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        $orders = Order::with('details.menu')->where('user_id', Auth::id())->get();
-        return view('orders.index', compact('orders'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        $menus = \App\Models\Menu::all();
-        return view('orders.create', compact('menus'));
+        $menus = Menu::all(); 
+        return view('orders.create', compact('menus')); 
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
+    
     public function store(Request $request)
     {
         $request->validate([
             'menu' => 'required|array',
+            'menu.*' => 'required|integer|min:1', 
         ]);
 
         \DB::beginTransaction();
 
         try {
             $order = new Order();
-            $order->user_id = Auth::id();
-            $order->status = 'pending';
+            $order->user_id = Auth::id(); 
+            $order->status = 'pending'; 
             $order->total_amount = 0;
             $order->save();
 
@@ -47,7 +35,7 @@ class OrderController extends Controller
 
             foreach ($request->menu as $menuId => $qty) {
                 if ($qty > 0) {
-                    $menu = \App\Models\Menu::find($menuId);
+                    $menu = Menu::find($menuId); 
                     $subtotal = $menu->price * $qty;
 
                     $order->details()->create([
@@ -56,7 +44,7 @@ class OrderController extends Controller
                         'subtotal' => $subtotal,
                     ]);
 
-                    $total += $subtotal;
+                    $total += $subtotal; 
                 }
             }
 
@@ -70,52 +58,5 @@ class OrderController extends Controller
             \DB::rollBack();
             return redirect()->back()->with('error', 'Gagal membuat pesanan: ' . $e->getMessage());
         }
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Order $order)
-    {        
-        if ($order->user_id !== Auth::id() || $order->status !== 'pending') {
-            return redirect()->route('orders.index')->with('error', 'Tidak bisa mengedit pesanan ini.');
-        }
-
-        return view('orders.edit', compact('order'));
-        }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Order $order)
-    {
-        if ($order->user_id !== Auth::id() || $order->status !== 'pending') {
-            return redirect()->route('orders.index')->with('error', 'Tidak bisa mengubah pesanan ini.');
-        }
-
-        $order->total_amount = $request->input('total_amount', 0);
-        $order->save();
-
-        return redirect()->route('orders.index')->with('success', 'Pesanan berhasil diperbarui.');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        if ($order->user_id !== Auth::id() || $order->status !== 'pending') {
-            return redirect()->route('orders.index')->with('error', 'Tidak bisa membatalkan pesanan ini.');
-        }
-        $order->delete();
-        return redirect()->route('orders.index')->with('success', 'Pesanan berhasil dibatalkan.');
     }
 }

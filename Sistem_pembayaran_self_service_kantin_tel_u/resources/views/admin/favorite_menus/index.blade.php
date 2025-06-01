@@ -1,6 +1,3 @@
-{{-- Anda mungkin punya layout admin sendiri, sesuaikan --}}
-{{-- @extends('layouts.admin_app') --}}
-{{-- @section('content') --}}
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -60,7 +57,6 @@
                             <td>{{ $favMenu->menu->name ?? 'Menu tidak ditemukan' }}</td>
                             <td>{{ Str::limit($favMenu->description, 50) }}</td>
                             <td>
-                                {{-- Data ini perlu diambil dari relasi atau join dengan tabel statistik --}}
                                 {{ $favMenu->menu->purchase_count ?? 'N/A' }}
                             </td>
                             <td>
@@ -80,4 +76,3 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-{{-- @endsection --}}

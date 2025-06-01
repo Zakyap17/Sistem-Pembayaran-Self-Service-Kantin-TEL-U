@@ -6,7 +6,6 @@
     <title>Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* Global Styles */
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
@@ -99,13 +98,13 @@
             <div class="card">
                 <h3>Pesan Makanan</h3>
                 <p>Pesan makanan favorit Anda dengan mudah.</p>
-                <a href="#">Pesan Sekarang</a>
+                <a href="{{ route('order.index') }}">Pesan Sekarang</a>
             </div>
 
             <div class="card">
                 <h3>Riwayat Transaksi</h3>
                 <p>Lihat riwayat transaksi Anda yang telah dilakukan.</p>
-                <a href="#">Lihat Riwayat</a>
+                <a href="{{ route('transaksi.index') }}">Lihat Riwayat</a>
             </div>
 
             <div class="card">
