@@ -30,13 +30,46 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        $order = new Order();
-        $order->user_id = Auth::id();
-        $order->status = 'pending';
-        $order->total_amount = 0;
-        $order->save();
+        $request->validate([
+            'menu' => 'required|array',
+        ]);
 
-        return redirect()->route('orders.index')->with('success', 'Pesanan berhasil dibuat.');
+        \DB::beginTransaction();
+
+        try {
+            $order = new Order();
+            $order->user_id = Auth::id();
+            $order->status = 'pending';
+            $order->total_amount = 0;
+            $order->save();
+
+            $total = 0;
+
+            foreach ($request->menu as $menuId => $qty) {
+                if ($qty > 0) {
+                    $menu = \App\Models\Menu::find($menuId);
+                    $subtotal = $menu->price * $qty;
+
+                    $order->details()->create([
+                        'menu_id' => $menuId,
+                        'quantity' => $qty,
+                        'subtotal' => $subtotal,
+                    ]);
+
+                    $total += $subtotal;
+                }
+            }
+
+            $order->total_amount = $total;
+            $order->save();
+
+            \DB::commit();
+
+            return redirect()->route('orders.index')->with('success', 'Pesanan berhasil dibuat.');
+        } catch (\Exception $e) {
+            \DB::rollBack();
+            return redirect()->back()->with('error', 'Gagal membuat pesanan: ' . $e->getMessage());
+        }
     }
 
     /**
