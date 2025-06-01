@@ -34,6 +34,7 @@ class MenuController extends Controller
 
     public function edit(Menu $menu)
     {
+        dd($menu);
         return view('menus.edit', compact('menu'));
     }
 
