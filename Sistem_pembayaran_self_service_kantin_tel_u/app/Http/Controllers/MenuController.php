@@ -29,7 +29,7 @@ class MenuController extends Controller
         Menu::create($request->all());
 
         return redirect()->route('menus.index')
-                         ->with('success', 'Menu berhasil ditambahkan!');
+                         ->with('success', 'Menu berhasil ditambahkan');
     }
 
     public function edit(Menu $menu)
