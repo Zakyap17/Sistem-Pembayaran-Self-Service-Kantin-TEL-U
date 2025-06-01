@@ -64,11 +64,6 @@
             transform: translateY(-3px);
         }
 
-        .card p {
-            font-size: 14px;
-            color: #555;
-        }
-
         /* Footer */
         .footer {
             background-color: #81a7aa;
@@ -86,7 +81,6 @@
                 flex-direction: column;
                 align-items: center;
             }
-
             .card {
                 width: 90%;
                 margin-bottom: 20px;
@@ -95,33 +89,25 @@
     </style>
 </head>
 <body>
-
-    <!-- Header -->
     <div class="header">
         <h1>Dashboard</h1>
     </div>
 
-    <!-- Main Content -->
     <div class="container">
         <h2>Selamat datang di Kantin Tel-U</h2>
-
-        <!-- Card Container -->
         <div class="card-container">
-            <!-- Pesan Makanan -->
             <div class="card">
                 <h3>Pesan Makanan</h3>
                 <p>Pesan makanan favorit Anda dengan mudah.</p>
                 <a href="#">Pesan Sekarang</a>
             </div>
 
-            <!-- Riwayat Transaksi -->
             <div class="card">
                 <h3>Riwayat Transaksi</h3>
                 <p>Lihat riwayat transaksi Anda yang telah dilakukan.</p>
                 <a href="#">Lihat Riwayat</a>
             </div>
 
-            <!-- Kelola Transaksi -->
             <div class="card">
                 <h3>Kelola Transaksi</h3>
                 <p>Kelola dan atur transaksi yang ada.</p>
@@ -130,10 +116,8 @@
         </div>
     </div>
 
-    <!-- Footer -->
     <div class="footer">
         <p>&copy; 2025 Sistem Pembayaran Kantin Tel U</p>
     </div>
-
 </body>
 </html>
