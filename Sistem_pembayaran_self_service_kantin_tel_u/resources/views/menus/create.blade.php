@@ -37,6 +37,15 @@
             background-color: #0056b3;
         }
 
+        .btn-secondary {
+            background-color: #6c757d;
+            border: none;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
         .form-group {
             margin-bottom: 20px;
         }
@@ -91,6 +100,7 @@
             </div>
             <button type="submit" class="btn btn-primary w-100">Simpan</button>
         </form>
+        <a href="{{ route('menus.index') }}" class="btn btn-secondary w-100 mt-3">Kembali ke Daftar Menu</a>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
